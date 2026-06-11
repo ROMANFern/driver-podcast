@@ -4,7 +4,8 @@ Usage (PowerShell):
     $env:SPOTIFY_CLIENT_ID = "..."; $env:SPOTIFY_CLIENT_SECRET = "..."
     python scripts/spotify_auth.py
 
-Requires the Spotify app to have redirect URI http://127.0.0.1:8888/callback.
+The redirect URI must exactly match one registered in your Spotify app
+(override with the SPOTIFY_REDIRECT_URI env var if yours differs).
 Paste the printed refresh token into the SPOTIFY_REFRESH_TOKEN GitHub secret.
 """
 
@@ -17,6 +18,7 @@ SCOPES = (
     "playlist-modify-private playlist-modify-public "
     "user-top-read user-library-read user-follow-read"
 )
+DEFAULT_REDIRECT_URI = "http://127.0.0.1:43827/spotify/callback"
 
 
 def main() -> None:
@@ -27,7 +29,7 @@ def main() -> None:
     auth = SpotifyOAuth(
         client_id=os.environ["SPOTIFY_CLIENT_ID"],
         client_secret=os.environ["SPOTIFY_CLIENT_SECRET"],
-        redirect_uri="http://127.0.0.1:8888/callback",
+        redirect_uri=os.environ.get("SPOTIFY_REDIRECT_URI", DEFAULT_REDIRECT_URI),
         scope=SCOPES,
         cache_path=".spotify_cache",
         open_browser=True,

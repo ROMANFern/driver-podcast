@@ -34,7 +34,7 @@ GitHub Actions (daily, ~04:45 Asia/Colombo)
 |---|---|
 | `OPENROUTER_API_KEY` | https://openrouter.ai/keys (free account; owl-alpha costs $0) |
 | `GEMINI_API_KEY` | https://aistudio.google.com/apikey (free tier; automatic fallback LLM) |
-| `SPOTIFY_CLIENT_ID` / `SPOTIFY_CLIENT_SECRET` | https://developer.spotify.com/dashboard → create an app, redirect URI `http://127.0.0.1:8888/callback` |
+| `SPOTIFY_CLIENT_ID` / `SPOTIFY_CLIENT_SECRET` | https://developer.spotify.com/dashboard → your app's credentials (any localhost redirect URI works; set `SPOTIFY_REDIRECT_URI` if it differs from the default in `scripts/spotify_auth.py`) |
 | `SPOTIFY_REFRESH_TOKEN` | run `python scripts/spotify_auth.py` locally once (see below) |
 
 At least one of the two LLM keys is required; set both so the pipeline survives

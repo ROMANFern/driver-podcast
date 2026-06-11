@@ -29,7 +29,10 @@ def _client() -> spotipy.Spotify:
     auth = SpotifyOAuth(
         client_id=os.environ["SPOTIFY_CLIENT_ID"],
         client_secret=os.environ["SPOTIFY_CLIENT_SECRET"],
-        redirect_uri="http://127.0.0.1:8888/callback",
+        # Not contacted during token refresh, but spotipy requires it; match the app
+        redirect_uri=os.environ.get(
+            "SPOTIFY_REDIRECT_URI", "http://127.0.0.1:43827/spotify/callback"
+        ),
         scope=SCOPES,
         open_browser=False,
     )
