@@ -7,6 +7,8 @@ Google News, summarizes new videos from your favorite YouTube channels, writes a
 Edge TTS), and publishes it to a private RSS feed your podcast app downloads
 automatically.
 
+Releases: https://github.com/ROMANFern/driver-podcast/releases
+
 ```
 GitHub Actions (daily, ~04:45 Asia/Colombo)
   1. collect_youtube  - channel RSS feeds -> new videos (24h) -> transcripts
