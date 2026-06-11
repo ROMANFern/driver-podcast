@@ -49,19 +49,13 @@ notebooklm:
   instructions: >
     This is a daily morning-drive briefing made for one listener, Manusha.
     Address him directly now and then. Cover the AI news, then anime news,
-    then the new videos from his YouTube creators (name each channel), and
-    close by mentioning the refreshed Daily Drive Mix Spotify playlist.
+    then the new videos from his YouTube creators (name each channel).
     Keep it energetic and conversational, around fifteen to twenty minutes.
 
 # Edge TTS fallback voice. List voices: python -m edge_tts --list-voices
 tts:
   voice: "en-US-AvaMultilingualNeural"
   rate: "+0%"
-
-spotify:
-  playlist_name: "Daily Drive Mix"
-  playlist_size: 25
-  enabled: true
 
 youtube:
   lookback_hours: 26        # slight overlap so nothing is missed between runs

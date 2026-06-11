@@ -21,8 +21,7 @@ Write a complete spoken script. Rules:
   unusual acronyms on first use, write numbers the way you'd say them.
 - Structure: short cold open teasing the best stories; the news segments by
   topic; a "from your creators" segment covering the new YouTube videos
-  (attribute each to its channel); a quick music corner mentioning today's
-  refreshed playlist; a brief outro.
+  (attribute each to its channel); a brief outro.
 - Be selective: skip weak items rather than padding. Add brief context or your
   own take where it helps, but never invent facts not in the brief.
 """
@@ -36,14 +35,11 @@ News research by topic:
 New YouTube videos (with transcripts or descriptions):
 {videos_json}
 
-Today's Spotify playlist ("{playlist_name}") highlights:
-{playlist_json}
-
 Write today's full episode script now. Output only the script text.
 """
 
 
-def write_script(brief: dict, videos: list[dict], playlist: dict | None) -> str:
+def write_script(brief: dict, videos: list[dict]) -> str:
     settings = load_settings()
     cfg = settings["script"]
 
@@ -56,9 +52,6 @@ def write_script(brief: dict, videos: list[dict], playlist: dict | None) -> str:
         }
         for v in videos
     ]
-    playlist_info = (
-        {"tracks": playlist["track_names"][:8]} if playlist else "not available today"
-    )
 
     script = chat(
         [
@@ -76,8 +69,6 @@ def write_script(brief: dict, videos: list[dict], playlist: dict | None) -> str:
                     today=datetime.now(timezone.utc).strftime("%A, %B %d, %Y"),
                     news_json=json.dumps(brief["topics"], ensure_ascii=False),
                     videos_json=json.dumps(video_summaries, ensure_ascii=False),
-                    playlist_name=settings["spotify"]["playlist_name"],
-                    playlist_json=json.dumps(playlist_info, ensure_ascii=False),
                 ),
             },
         ]
@@ -92,4 +83,4 @@ if __name__ == "__main__":
 
     brief = json.load(open(sys.argv[1], encoding="utf-8"))
     videos = json.load(open(sys.argv[2], encoding="utf-8")) if len(sys.argv) > 2 else []
-    print(write_script(brief, videos, None))
+    print(write_script(brief, videos))

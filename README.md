@@ -3,19 +3,17 @@
 A fully automated, **$0/month** daily podcast for your commute. Every morning a
 GitHub Actions pipeline researches your topics of interest (AI, anime, ...) via
 Google News, summarizes new videos from your favorite YouTube channels, writes a
-15–20 minute script with a free LLM (OpenRouter's owl-alpha, with Gemini Flash
-free tier as automatic fallback), turns it into audio with Edge TTS, refreshes a
-Spotify playlist for the rest of the drive, and publishes the episode to a
-private RSS feed your podcast app downloads automatically.
+15–20 minute episode (NotebookLM two-host audio, or a free-LLM script read by
+Edge TTS), and publishes it to a private RSS feed your podcast app downloads
+automatically.
 
 ```
 GitHub Actions (daily, ~04:45 Asia/Colombo)
   1. collect_youtube  - channel RSS feeds -> new videos (24h) -> transcripts
   2. research         - Google News RSS per topic + free LLM -> summaries
-  3+4. audio          - NotebookLM Audio Overview (two-host AI podcast), with
+  3. audio            - NotebookLM Audio Overview (two-host AI podcast), with
                         automatic fallback to free-LLM script + Edge TTS
-  5. spotify_refresh  - rebuild "Daily Drive Mix" playlist
-  6. publish          - MP3 + RSS feed -> GitHub Pages
+  4. publish          - MP3 + RSS feed -> GitHub Pages
 ```
 
 ## One-time setup
@@ -34,8 +32,6 @@ GitHub Actions (daily, ~04:45 Asia/Colombo)
 |---|---|
 | `OPENROUTER_API_KEY` | https://openrouter.ai/keys (free account; owl-alpha costs $0) |
 | `GEMINI_API_KEY` | https://aistudio.google.com/apikey (free tier; automatic fallback LLM) |
-| `SPOTIFY_CLIENT_ID` / `SPOTIFY_CLIENT_SECRET` | https://developer.spotify.com/dashboard → your app's credentials (any localhost redirect URI works; set `SPOTIFY_REDIRECT_URI` if it differs from the default in `scripts/spotify_auth.py`) |
-| `SPOTIFY_REFRESH_TOKEN` | run `python scripts/spotify_auth.py` locally once (see below) |
 
 At least one of the two LLM keys is required; set both so the pipeline survives
 owl-alpha's eventual retirement.
@@ -62,23 +58,12 @@ to the single-voice script + Edge TTS path, and the Actions log tells you to
 re-run `notebooklm login` and refresh the secret. To skip NotebookLM entirely,
 set `audio.engine: "edge"` in `config/settings.yaml`.
 
-### 3. Spotify refresh token (run locally once)
-
-```powershell
-$env:SPOTIFY_CLIENT_ID = "..."; $env:SPOTIFY_CLIENT_SECRET = "..."
-pip install spotipy
-python scripts/spotify_auth.py
-```
-
-A browser opens; log in and authorize. The script prints the refresh token —
-paste it into the `SPOTIFY_REFRESH_TOKEN` secret.
-
-### 4. Personalize
+### 3. Personalize
 - `config/topics.yaml` — your topics and what counts as noteworthy.
 - `config/channels.yaml` — YouTube channels (instructions for finding channel IDs are in the file).
-- `config/settings.yaml` — voice, episode length, playlist size, feed slug.
+- `config/settings.yaml` — voice, episode length, feed slug.
 
-### 5. Subscribe
+### 4. Subscribe
 After the first successful run, your feed lives at:
 
 ```
@@ -94,7 +79,7 @@ Enable auto-download so the episode is on your phone before you leave.
   `.github/workflows/daily.yml` to change.
 - Manual: **Actions → Daily episode → Run workflow**.
 - Local test: `pip install -r requirements.txt`, set the env vars, then
-  `python -m src.pipeline` (use `--skip tts,spotify` to test cheaply).
+  `python -m src.pipeline` (use `--skip tts` to test cheaply).
 
 ## Notes & known issues
 - **owl-alpha is a stealth preview model:** free in exchange for usage data
@@ -109,9 +94,10 @@ Enable auto-download so the episode is on your phone before you leave.
   requests from datacenter IPs. The pipeline falls back to the video
   title/description from the RSS feed and continues. If it becomes chronic,
   consider a proxy for that step.
-- **Spotify recommendations endpoint** is deprecated for new apps, so the
-  playlist is curated from your top tracks, saved tracks, and new releases from
-  artists you follow.
+- **No Spotify integration:** Spotify blocked playlist-write API access for
+  personal (development-mode) apps in May 2025, making automated playlist
+  curation impossible for hobbyist apps. Use Spotify's own personalized
+  playlists (Daylist, Daily Mix) for music after the episode.
 - The feed URL is unlisted (random slug), not authenticated. Anyone with the
   exact URL could subscribe — rotate `feed_slug` if it leaks.
 - Running cost: **$0/month** (Google News RSS, free LLMs, Edge TTS, GitHub free

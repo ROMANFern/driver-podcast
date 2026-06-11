@@ -2,10 +2,10 @@
 
 Usage:
     python -m src.pipeline                  # full run
-    python -m src.pipeline --skip tts,spotify,publish   # cheap local test
+    python -m src.pipeline --skip tts,publish   # cheap local test
 
-The episode ships even if YouTube transcripts or Spotify fail; only the
-research+script+TTS chain is essential.
+The episode ships even if YouTube transcripts fail; only the
+research+audio chain is essential.
 """
 
 import argparse
@@ -22,7 +22,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
         "--skip", default="",
-        help="comma-separated stages to skip: youtube,research,spotify,notebooklm,tts,publish",
+        help="comma-separated stages to skip: youtube,research,notebooklm,tts,publish",
     )
     args = parser.parse_args()
     skip = {s.strip() for s in args.skip.split(",") if s.strip()}
@@ -51,16 +51,7 @@ def main() -> int:
     (out_dir / "brief.json").write_text(
         json.dumps(brief, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    # --- 3. Spotify (optional; runs before script so the script can mention it) ---
-    playlist = None
-    if "spotify" not in skip:
-        try:
-            from .spotify_refresh import refresh_playlist
-            playlist = refresh_playlist()
-        except Exception:
-            log.exception("Spotify stage failed — continuing without playlist")
-
-    # --- 4+5. Audio generation (essential) ---
+    # --- 3+4. Audio generation (essential) ---
     if "tts" in skip:
         log.info("Audio generation skipped — stopping before audio/publish")
         return 0
@@ -72,7 +63,7 @@ def main() -> int:
     if engine == "notebooklm" and "notebooklm" not in skip:
         try:
             from .notebooklm_audio import generate_episode
-            mp3_path = generate_episode(brief, videos, playlist)
+            mp3_path = generate_episode(brief, videos)
         except Exception:
             log.exception(
                 "NotebookLM generation failed — falling back to script + Edge TTS. "
@@ -82,7 +73,7 @@ def main() -> int:
 
     if mp3_path is None:
         from .write_script import write_script
-        script = write_script(brief, videos, playlist)
+        script = write_script(brief, videos)
         (out_dir / "script.txt").write_text(script, encoding="utf-8")
         from .synthesize import synthesize
         mp3_path = synthesize(script)

@@ -6,4 +6,4 @@ venv/
 output/
 *.mp3
 !docs/episodes/*.mp3
-.spotify_cache
+.cache

@@ -22,8 +22,8 @@ from .common import ensure_output_dir, get_logger, load_settings
 log = get_logger("notebooklm")
 
 
-def build_brief_document(brief: dict, videos: list[dict], playlist: dict | None) -> str:
-    """Render research + videos + playlist into one markdown source document."""
+def build_brief_document(brief: dict, videos: list[dict]) -> str:
+    """Render research + videos into one markdown source document."""
     today = datetime.now(timezone.utc).strftime("%A, %B %d, %Y")
     lines = [f"# Daily Drive briefing — {today}", ""]
 
@@ -46,11 +46,6 @@ def build_brief_document(brief: dict, videos: list[dict], playlist: dict | None)
             lines.append(f"### {v['channel']}: {v['title']}")
             lines.append(v["content"][:6000])
             lines.append("")
-
-    if playlist:
-        lines.append("## Today's refreshed Spotify playlist (Daily Drive Mix)")
-        lines.extend(f"- {t}" for t in playlist["track_names"][:8])
-        lines.append("")
 
     return "\n".join(lines)
 
@@ -82,13 +77,13 @@ async def _generate_async(doc: str, out_path: Path, cfg: dict) -> None:
             await client.notebooks.delete(nb.id)
 
 
-def generate_episode(brief: dict, videos: list[dict], playlist: dict | None,
+def generate_episode(brief: dict, videos: list[dict],
                      out_name: str = "episode.mp3") -> Path:
     cfg = load_settings()["notebooklm"]
     out_dir = ensure_output_dir()
     out_path = out_dir / out_name
 
-    doc = build_brief_document(brief, videos, playlist)
+    doc = build_brief_document(brief, videos)
     (out_dir / "brief_doc.md").write_text(doc, encoding="utf-8")
     log.info("Generating NotebookLM Audio Overview (%s/%s) from %d-char brief",
              cfg["audio_format"], cfg["audio_length"], len(doc))
@@ -107,4 +102,4 @@ if __name__ == "__main__":
 
     brief = json.load(open(sys.argv[1], encoding="utf-8"))
     videos = json.load(open(sys.argv[2], encoding="utf-8")) if len(sys.argv) > 2 else []
-    print(generate_episode(brief, videos, None))
+    print(generate_episode(brief, videos))
