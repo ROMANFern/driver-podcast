@@ -1,0 +1,11 @@
+# YouTube channels to monitor for new videos.
+# Find a channel_id: open the channel page -> view source -> search for "channelId"
+# (it starts with "UC"), or use https://www.youtube.com/@handle -> About -> Share -> Copy channel ID.
+channels:
+  - name: "Fireship"
+    channel_id: "UCsBjURrPoezykLs9EqgamOA"
+  - name: "Two Minute Papers"
+    channel_id: "UCbfYPyITQ-7l4upoX8nvctg"
+  # Add your favorite creators here:
+  # - name: "Channel Name"
+  #   channel_id: "UCxxxxxxxxxxxxxxxxxxxxxx"

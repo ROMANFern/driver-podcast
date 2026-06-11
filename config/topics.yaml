@@ -1,0 +1,17 @@
+# Topics the research agent covers each morning.
+# `guidance` is injected into the research prompt - use it to steer what counts as noteworthy.
+# Optional `queries`: Google News search queries for the topic (defaults to the topic name).
+topics:
+  - name: "AI"
+    queries: ["artificial intelligence", "AI model release", "LLM"]
+    guidance: >
+      Major model releases, notable open-source projects, AI agent tooling,
+      significant research papers, and big industry moves (Anthropic, OpenAI,
+      Google DeepMind, Meta, etc.). Skip routine funding rounds and opinion pieces
+      unless genuinely significant.
+  - name: "Anime"
+    queries: ["anime announcement", "anime season"]
+    guidance: >
+      New season announcements, trailers, episode highlights of currently airing
+      popular shows, manga adaptation news, and studio news. Prefer concrete
+      announcements over rumors.

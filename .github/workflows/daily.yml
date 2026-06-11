@@ -1,0 +1,61 @@
+name: Daily episode
+
+on:
+  schedule:
+    - cron: "15 23 * * *"   # 23:15 UTC = 04:45 Asia/Colombo
+  workflow_dispatch:
+    inputs:
+      skip:
+        description: "Stages to skip (comma-separated: youtube,research,spotify,tts,publish)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write   # commit feed updates + create releases
+
+jobs:
+  episode:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50   # NotebookLM audio generation alone can take 10-25 min
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run pipeline
+        env:
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          NOTEBOOKLM_AUTH_JSON: ${{ secrets.NOTEBOOKLM_AUTH_JSON }}
+          SPOTIFY_CLIENT_ID: ${{ secrets.SPOTIFY_CLIENT_ID }}
+          SPOTIFY_CLIENT_SECRET: ${{ secrets.SPOTIFY_CLIENT_SECRET }}
+          SPOTIFY_REFRESH_TOKEN: ${{ secrets.SPOTIFY_REFRESH_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python -m src.pipeline --skip "${{ github.event.inputs.skip || '' }}"
+
+      - name: Commit feed updates
+        run: |
+          git config user.name "daily-drive-bot"
+          git config user.email "actions@github.com"
+          git add docs/
+          git diff --cached --quiet || git commit -m "Episode $(date -u +%F)"
+          git push
+
+      - name: Upload script artifact (for debugging)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: episode-debug
+          path: |
+            output/brief.json
+            output/videos.json
+            output/brief_doc.md
+            output/script.txt
+          if-no-files-found: ignore
+          retention-days: 7
