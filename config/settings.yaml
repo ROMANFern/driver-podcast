@@ -8,7 +8,7 @@ podcast:
   feed_slug: "dd-7k3x9q2m"
   # Set after creating the GitHub repo and enabling Pages, e.g.
   # https://<username>.github.io/driver-podcast
-  base_url: ""
+  base_url: "https://romanfern.github.io/driver-podcast"
 
 episode:
   target_words: 2600        # ~15-20 minutes of speech
