@@ -6,26 +6,30 @@
     <description>A personalized daily briefing on AI, anime, and your favorite creators.</description>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
+    <image>
+      <url>https://romanfern.github.io/driver-podcast/podcast-cover.png</url>
+      <title>Manusha's Daily Drive</title>
+      <link>https://romanfern.github.io/driver-podcast</link>
+    </image>
     <language>en</language>
-    <lastBuildDate>Sun, 12 Jul 2026 00:21:01 +0000</lastBuildDate>
-    <itunes:block>yes</itunes:block>
+    <lastBuildDate>Sun, 12 Jul 2026 09:17:20 +0000</lastBuildDate>
+    <itunes:author>Daily Drive Bot</itunes:author>
+    <itunes:category text="Technology"/>
+    <itunes:image href="https://romanfern.github.io/driver-podcast/podcast-cover.png"/>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:summary>A personalized daily briefing on AI, anime, and your favorite creators.</itunes:summary>
+    <itunes:type>episodic</itunes:type>
     <item>
-      <title>Jul 12, 2026 — OpenAI Launches GPT-5.6 'Sol' Globally Following White House Cybersecurity Holdback</title>
-      <description>[AI] OpenAI Launches GPT-5.6 'Sol' Globally Following White House Cybersecurity Holdback — https://news.google.com/rss/articles/CBMiZkFVX3lxTE9aY1d1cUhyQnFDN0NWOHlyMXJLVTlBU3hpcko0bVoxS2R6THJudVdrSEpoMXJuSmh1RkJwZjB3UHQ4QXRhemVtYWhCbXdSNzNDYmdxS0hhQ2ZkYk5xSjM4SDE5MnlfQQ?oc=5
-[AI] Apple Sues OpenAI Accusing ChatGPT Maker of Stealing Trade Secrets — https://news.google.com/rss/articles/CBMirgFBVV95cUxQemVIV1hmZU9vdWZoeVVwcFIyTThLYlVlZVc1VXRQSVlMbUItbUNrZGdxOXJtd0c0TWowX2NxT2cyMnlsa2lWM2dtakRIXy1IUThKYmlaY2pMdkN6MWhkRHJyM2dPelpTUnBTNTFHZUJWY3FOS3lEZW53c1gwUWJTWFJvcnF0T0dsWEpyblZpcFduM0Fnd0QwVEZCY3hDWmw1dFNiOXFuZEZad1h0RlHSAbMBQVVfeXFMT2RuQXFMUnZXX0tvZWFQdEN3cjc5Wl9INXpnS3cwSDI3dWxJcER2bUNPX041bHFqOC1uQUZldzlwQkF6amM4TGFQeEtLbXllRHZoWFNyVzd3UHdqaXRsNEVUeVRwUlVUb004OE13clNnbUhPSXpBeDB4VWFmZTRRZXR0SjNDTS1Ldm83OHFQcjB2b0RvZk9YNXRLUVZOUlFsQ19uSkpPcWkzX3pVVVpxcFIwTkk?oc=5
-[AI] Micron CEO Announces Historic $250 Billion Investment for AI Memory Chip Development — https://news.google.com/rss/articles/CBMimAFBVV95cUxOYkhyV0RuMGJPblFZS28wQjJ5bFNaT3VoZ0NYamd5RnZNRzBIV2xvYjlGSjBzMFFTVkFJS1YxekE0UjJsRzlJTXI2S2lXbVE1YmpSSEx6NTk1ekxScFd0MkNWNDBHbXZnWGdROGhOZnkyY3pkc2dWQmJjVjJ1Y1Bma0xrV2FzWDhsYW1vM2xzUUNzZFFLaWE0Tg?oc=5
-[AI] Colibrì Proof-of-Concept Runs Frontier-Level 1.5-TB Model on Only 25GB of RAM — https://news.google.com/rss/articles/CBMirwJBVV95cUxNbmdla0tsTXRYRm1mVXRDS0FsSTNtZnBRSUNlNUJpcDdfZkdMYUNEMEUzX3JzdXVFMnF2Ull5QXIxTmZKOUdvRURHOE5ib2JHeUVTQ2lQTkMtRFBuUmoySDhLc0R1TG9HYUdMelZZdUNTWVRlbHlqYTU2UkZzOTNONmVPa1ZaWHpIUzU5Z3dZQ09WUWtsLS1BZkZQLUt2Ym5vSFB1VUJTLXI5TzFONWZIZmdKVmlDVFFTUTlDSXB3N0ZnMV8xczZDRWI1MmREZ1h1RkV0Tk1UZFhtNFhsWFpSdjNqanN0MWE0LWZzUnUwaVVOUXJLUUJkU2VTSVpBN1gzaFJDRlZlVlNlY0lQZVVZLTRJTUJpV21ONnA4S3JlWFE2VGh4aE9TWGphTHJGT28?oc=5
-[AI] Zuckerberg Returns to Social Media to Launch Low-Cost, High-Performance Muse Spark 1.1 — https://news.google.com/rss/articles/CBMizAFBVV95cUxQT2lmQ1ZfMUVRVEF3MFBYMnJMUEh1aEVPaW1aVTh0QjZWN0h3M1c5akRWcnYtMG53eDBZZ3pjZjhCbi1KRmJ2LVo3RXYtbl9HVWJnZGdKQk9Nd3pNY0RpUGU3cEE4UUlVWHl1TUdxR0NKZ0R2V29CMUxlNkxTLTBLbEJfLWxrUHI2SVlSdjYydlkzQk1hS0pLeC11cjhsTmpMQXNvQV9yWjJJdTdJQmh2b3ZlYWtDTDVYOG1zb3NvbE8tYmpKWVdYVEZ4bG4?oc=5
-[AI] Mistral AI Releases 'Robostral Navigate' for Single-Camera Robotics Control — https://news.google.com/rss/articles/CBMiVkFVX3lxTFBuODdfOFZITFJmb0FyNW00TkZEdUtFYzVxWnV5bWxCY1dRc3hnVjdFUVpqNHRnWDBGVUMzYXViZ1ViVEVCR216YzNOZ0lDbXZHMGNnUW93?oc=5
-[Anime] Solo Leveling Returns with Double Dungeon Arc Movie Ahead of Season 3 — https://news.google.com/rss/articles/CBMi0AFBVV95cUxPSE43T2hnQUpfTk9hU2JWZmZkNkM3YUl2alg4Q3gxVElTQ1J4LTNIeUxMZWhUNDJEMl90d3J3NnVLU3lNaDUwUkFhdFNyOHFjUVRsc284QlBVTTFFY1paeUJJeXVFdmpQeTNwYnp0bUt6Q2Zkc2xrVkRKQjBSUktYdUpqa0FqYzJmY0xzMVpEUVdGNUlKdWxzRm9yY3FBVFJIUmhheXpxQUZ5N2pQakNUUmlNclhRUktFT2ppWHSaNDlEWERPUHJLVHNsNm9NQVlv?oc=5
-[Anime] DC Officially Announces New Batman Anime Series Starring the Joker — https://news.google.com/rss/articles/CBMixAFBVV95cUxNWE9yMDgwc1E1RzVsWEZKaXI0OFVfbExPb0ZvOXZqdVNHX2xEYmJLeUNfdERlNXlCeDhub205MTcwaHk5UkZxLS1mSXdoSkpaVUg4ZnhaWVRjSm1PZXJWeUo3VHZEcTQyczN6aHNpMm1tMFZ2eWxhei0yNlFjc2l3alYySmQtVUZVYkp1MW1KRjlhQWE4dGZBRGJnRWduRGNaR2RsaGdzcW1sVnFwWWxjN2d6dm9kQ21uQ1l1ZmUtc045d1dG?oc=5
-[Anime] Shangri-La Frontier Season 3 Set for January 2027 Premiere — https://news.google.com/rss/articles/CBMiWEFVX3lxTE9rWDVmSExXSDVrOVlDNnk5Zzh5cWFiMjhPTEU3aTJkMzF4cHFKVjZnUm9OQXdDWVRLMHZjTjIyVHRLMFphY3pJa29GaXo2Tmo1T25zM3N1OTg?oc=5
-[Anime] New My Hero Academia Release Confirmed for Fall 2026 — https://news.google.com/rss/articles/CBMizAJBVV95cUxONENhRUtOZ1J3NlhPMTE1Z2xaQTU1dFl0Q2hGMHVFUzlFckx6R3JibXV2SHluQ2toazU5RDNqMHNQblFFbExFcFJ4Q3lMd1RSSjlfeXNWblRUWG1CTGtVXzdQOXhrdUZkTlVVTmVfakxHRWRrbjJLLWJYN0N1a0pPU1BmcUVCTTdpWVZUTTNucXJXblJ1LU92QnBVNjJ1Zl8yWW1LU0NlSlk1UVRvbzlaWGpoNktoelRPTWtXS3poZDRhUjhIdEh2eDE0eXF3X2pnR0ptejRCdkZJNEJfQ29ZcDZNMHh1VkNWcjVoWkJMZ2h1Z3ZGWEViempJSW80NVE0ZnF4R0szNnJMZTZfYTFVRHlLZ0plTVRpVTdmSnBFOFJWOFNvdUl6WndfZGs2SGFjU0dsbVh6ZDdsaGdNQ1Mzemh0ckZnNjJzSV9rMw?oc=5
-[Anime] Ghost of Tsushima: Legends Anime Teaser Showcases Assassin, Hunter, and Ronin — https://news.google.com/rss/articles/CBMiwgFBVV95cUxNMjJhSko1YXg0Y2d3QnZQY29McnkybjgtdEw4eWJ1UTd5ZmFicmk4Q0YycC1QZHZZSS0wYlMtc3dvWDF6MzNRQy10OFYxZUs4Y1ZETlY4bGZXdmhsVG5HaE5ZXzBYa3hvNHM2TlVST2NGc1h6T0FVWTg0R2VGZWwyV1B2dWhtRUJYd2ZHZ0tibk0yN0hRME1PRlRBSV9jQVZMOUg4WkI5VGRyQWdXYS1pNGNTNlJBT1l0Xy01UXJ3VWNCQQ?oc=5
-[Anime] Netflix Begins Streaming New One Piece Anime Spin-Off — https://news.google.com/rss/articles/CBMihAFBVV95cUxNM354SGl1RWlnRVZYSElULUxIVWtyVV9yRHluZTFhSGVNSEFyV0d1dlpabUh3bzdiWk8tSmdaV1R6S1ZtZGNMRjZDWkNDaXdkcEJmamZDdE5wYmluelNDSDM5UUgwbjc2NzYyNkpHSUNRQTN2MmYzWVE1ZDgzeEVGV1lQdUI?oc=5</description>
-      <guid isPermaLink="false">https://github.com/ROMANFern/driver-podcast/releases/download/ep-2026-07-12/episode.mp3</guid>
-      <enclosure url="https://github.com/ROMANFern/driver-podcast/releases/download/ep-2026-07-12/episode.mp3" length="5734512" type="audio/mpeg"/>
-      <pubDate>Sun, 12 Jul 2026 00:20:56 +0000</pubDate>
+      <title>Jul 12, 2026 — OpenAI Readies GPT-5.6 for Public Launch Following Federal Testing</title>
+      <description>[AI] OpenAI Readies GPT-5.6 for Public Launch Following Federal Testing — https://news.google.com/rss/articles/CBMipAFBVV95cUxPQ000Vzl0QjdTM3xXY2RGaEJfWlRUb0F1NDJlbGxQSjJVN2dERF91eG1DQnN5LUxFVl9RSFpkZnFwdXctdktPNW5obGk3bnMyMEZleUs4MW9GUFJtRGIyNnVFcExwVmV1ak41M1FoU21fVjdsdkFINjFlanFiVTRFTHNrTVpNMTV4Qk45N3NNb2czcjJ2X0tNWmlQUWFLa0REU0ktWw?
+[AI] Anthropic Rumored to Unveil Model Surpassing GPT-5.6 Next Week — https://news.google.com/rss/articles/CBMilAFBVV95cUxOQmpMT0RhdHoyZ2JMeTVBS0tpd0VOMFJHLXJzcW9LaUNjMEVjUXVsRDNveXEzVElCTG1CZjdFMXFYUWhsZnlXZmcwbHg5SkRMQ0VtcXVWOXI4SEVNNzdUTUZNQnlnT19Zb3paSFRvWFoyQ2EtVk5UcjJkVzRKalF2SFVqVVRzdVZZVGthcm5FWGtCNUJt
+[AI] Experts Warn of First Documented Case of 'Agentic Ransomware' — https://news.google.com/rss/articles/CBMizwJBVV95cUxPMlRiTzdtcWN5eFRfemNFNVlIMlKMzlaLUs1N0JiSlNQWkZUN09jT0R2RE4xV2REMUc4VzBDcFM0N0pTXzNzTWk3UGVuNG9oQXN6dzQ4bjVXYXFMTCQ?
+[AI] Meta Pauses New AI Feature Following Privacy Backlash — https://news.google.com/rss/articles/CBMijgFBVV95cUxOVlVJcDR6ck5tNkg3N3MxS1AtQWxnaW4D4NmZlaWl6VzV6Vnk5T0h6aEIsYVpGZkZpY1VUM0VzS1NfW2YmZWMmNDU0YmFvU2h4S0hIeW5leU01T0NzaXN0bmU1T25ZcWljMUltZ0FvS2N0M3V6VjVjYmI5RWp0TWY5Z1RYM2pTUnZreFlSZ3Y0ZHFmYmR6Smd6M2p3Zzl3Ynd3YmZ6WlRYYmcyS0N6VTV6S2Z6VlZxeVpYVjY1WldZcTVZazV6S0o=
+[AI] Colibrì Proof-of-Concept Achieves Frontier-Level Performance with Minimal RAM — https://news.google.com/rss/articles/CBMirwJBVV95cUxNbmdla0tsTXRYRm1mVXRDS0FsSTNtZnBRSUNlNUJpcDdfZkdMYUNEMEUzX3JzdXVFMnF2Ull5QXIxTmZKOUdvUERHOE5ib2JHeUVTQ2lQTkMtRFBuUmoySDhLc0R1TG9HYUdMelZZUUNTVVRlbHlqYTU2UkZzOTNONmVPa1ZaWHpIUzU5Z3dZQ09WUWtsLS1BZkFQLUt2Ym5vSFB1VUJTLXI5TzFONWZIZmdKVmlDVFFTUTlDSXB3N0ZnMV8xczZDRWI1MmREZ1h1RkV0TkNUZXh3YmgyZUpicDkyR3V3aFpB
+[AI] Ant Group’s Open-Source Robot Brain Outperforms Competitors — https://news.google.com/rss/articles/CBMiwwFBVV95cUxOTGctdHQtSWdvbEFSVXlaWE9qSmFPUjVqWHB1dWlBMDFQWE5kcjd0OGt0WmpUVzZCRWNzVUNVX3pFYW1zc2lJaWswbmZmejlJVGNEOVdzamJGMUtlOXNZQkpNMEd4WWtkWmxjX3VpNmNmN0ZleWlZTWpSdWpXUXRkcXpXNWp4Z2p2VnZqZGRYenY0Z2p6RzI0YmlmSXB0Unp0R0p6TWpXSE9T</description>
+      <guid isPermaLink="false">https://github.com/ROMANFern/driver-podcast/releases/download/ep-2026-07-12/2026-07-12-episode.mp3</guid>
+      <enclosure url="https://github.com/ROMANFern/driver-podcast/releases/download/ep-2026-07-12/2026-07-12-episode.mp3" length="67825087" type="audio/mpeg"/>
+      <pubDate>Sun, 12 Jul 2026 09:17:13 +0000</pubDate>
     </item>
     <item>
       <title>Jul 11, 2026 — OpenAI Releases GPT-5.6 Amid Safety Scrutiny and Jailbreak Warnings</title>
