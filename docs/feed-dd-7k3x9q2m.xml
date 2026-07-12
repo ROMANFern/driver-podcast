@@ -6,9 +6,19 @@
     <description>A personalized daily briefing on AI, anime, and your favorite creators.</description>
     <docs>http://www.rssboard.org/rss-specification</docs>
     <generator>python-feedgen</generator>
+    <image>
+      <url>https://romanfern.github.io/driver-podcast/podcast-cover.png</url>
+      <title>Manusha's Daily Drive</title>
+      <link>https://romanfern.github.io/driver-podcast</link>
+    </image>
     <language>en</language>
-    <lastBuildDate>Thu, 11 Jun 2026 05:27:16 +0000</lastBuildDate>
-    <itunes:block>yes</itunes:block>
+    <lastBuildDate>Mon, 15 Jun 2026 14:48:48 +0000</lastBuildDate>
+    <itunes:author>Daily Drive Bot</itunes:author>
+    <itunes:category text="Technology"/>
+    <itunes:image href="https://romanfern.github.io/driver-podcast/podcast-cover.png"/>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:summary>A personalized daily briefing on AI, anime, and your favorite creators.</itunes:summary>
+    <itunes:type>episodic</itunes:type>
     <item>
       <title>Jun 11, 2026 — Anthropic Releases Mythos-Class Claude Fable 5 AI Model</title>
       <description>[AI] Anthropic Releases Mythos-Class Claude Fable 5 AI Model — https://news.google.com/rss/articles/CBMiW0FVX3lxTE9pX0VvdkNzRF9kQVpXNGtSSnRrTFhyZkxwX1pTLVZNMkJuV0tRa05URjRQaEMxUks1cEpyY0JDRTVqTkxkMk9GT01BSFFfemRYXzlia2xYemZ6X1k?oc=5

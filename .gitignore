@@ -6,4 +6,5 @@ venv/
 output/
 *.mp3
 !docs/episodes/*.mp3
+docs/podcast-cover-source.png
 .cache

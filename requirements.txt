@@ -1,7 +1,7 @@
 openai>=1.60
 edge-tts>=7.0
 notebooklm-py>=0.3
-youtube-transcript-api>=0.6.3
+youtube-transcript-api>=1.2.4
 feedgen>=1.0
 feedparser>=6.0
 PyYAML>=6.0

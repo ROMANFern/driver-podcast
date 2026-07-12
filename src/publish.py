@@ -65,6 +65,8 @@ def _build_feed(episodes: list[dict], settings: dict) -> None:
     pod = settings["podcast"]
     base_url = pod["base_url"].rstrip("/")
     feed_path = DOCS_DIR / f"feed-{pod['feed_slug']}.xml"
+    artwork_url = f"{base_url}/{pod['artwork']}"
+    owner_email = os.environ.get(pod["owner_email_env"])
 
     fg = FeedGenerator()
     fg.load_extension("podcast")
@@ -73,7 +75,20 @@ def _build_feed(episodes: list[dict], settings: dict) -> None:
     fg.author({"name": pod["author"]})
     fg.language(pod["language"])
     fg.link(href=base_url or "https://example.com", rel="alternate")
-    fg.podcast.itunes_block(True)  # ask directories not to index
+    fg.logo(artwork_url)
+    fg.podcast.itunes_author(pod["author"])
+    fg.podcast.itunes_category(pod["category"])
+    fg.podcast.itunes_explicit("no")
+    fg.podcast.itunes_image(artwork_url)
+    fg.podcast.itunes_summary(pod["description"])
+    fg.podcast.itunes_type("episodic")
+    if owner_email:
+        fg.podcast.itunes_owner(name=pod["author"], email=owner_email)
+    else:
+        log.warning(
+            "%s is not set; Spotify cannot verify feed ownership until it is provided",
+            pod["owner_email_env"],
+        )
 
     for ep in reversed(episodes):  # feedgen outputs newest-last as written
         fe = fg.add_entry()

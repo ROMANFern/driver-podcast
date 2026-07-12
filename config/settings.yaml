@@ -4,6 +4,11 @@ podcast:
   author: "Daily Drive Bot"
   description: "A personalized daily briefing on AI, anime, and your favorite creators."
   language: "en"
+  category: "Technology"
+  artwork: "podcast-cover.png"
+  # Set this GitHub Actions secret to the public email Spotify should use to
+  # verify feed ownership when the show is submitted.
+  owner_email_env: "SPOTIFY_OWNER_EMAIL"
   # Random slug keeps the feed URL private-ish. Change it to rotate the URL.
   feed_slug: "dd-7k3x9q2m"
   # Set after creating the GitHub repo and enabling Pages, e.g.
@@ -21,7 +26,7 @@ llm:
   providers:
     - name: "openrouter"
       base_url: "https://openrouter.ai/api/v1"
-      model: "openrouter/owl-alpha"
+      model: "openrouter/free"
       api_key_env: "OPENROUTER_API_KEY"
     - name: "gemini"
       base_url: "https://generativelanguage.googleapis.com/v1beta/openai/"
@@ -61,3 +66,6 @@ youtube:
   lookback_hours: 26        # slight overlap so nothing is missed between runs
   max_videos_per_day: 6
   max_transcript_chars: 12000
+  # Preferred caption languages, in priority order. If none are available,
+  # another caption track is translated to the first language when possible.
+  transcript_languages: ["en", "en-US", "en-GB"]

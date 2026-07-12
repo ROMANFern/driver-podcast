@@ -18,6 +18,12 @@ from .common import ensure_output_dir, get_logger
 log = get_logger("pipeline")
 
 
+def _episode_filename(now: datetime | None = None) -> str:
+    """Return the stable UTC-dated filename used for generation and publishing."""
+    now = now or datetime.now(timezone.utc)
+    return f"{now.strftime('%Y-%m-%d')}-episode.mp3"
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -58,12 +64,13 @@ def main() -> int:
 
     from .common import load_settings
     engine = load_settings()["audio"]["engine"]
+    episode_filename = _episode_filename()
     mp3_path = None
 
     if engine == "notebooklm" and "notebooklm" not in skip:
         try:
             from .notebooklm_audio import generate_episode
-            mp3_path = generate_episode(brief, videos)
+            mp3_path = generate_episode(brief, videos, out_name=episode_filename)
         except Exception:
             log.exception(
                 "NotebookLM generation failed — falling back to script + Edge TTS. "
@@ -76,7 +83,7 @@ def main() -> int:
         script = write_script(brief, videos)
         (out_dir / "script.txt").write_text(script, encoding="utf-8")
         from .synthesize import synthesize
-        mp3_path = synthesize(script)
+        mp3_path = synthesize(script, out_name=episode_filename)
 
     # --- 6. Publish ---
     if "publish" in skip:

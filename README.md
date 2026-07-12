@@ -32,11 +32,23 @@ GitHub Actions (daily, ~04:45 Asia/Colombo)
 
 | Secret | Where to get it |
 |---|---|
-| `OPENROUTER_API_KEY` | https://openrouter.ai/keys (free account; owl-alpha costs $0) |
+| `OPENROUTER_API_KEY` | https://openrouter.ai/keys (free account; uses OpenRouter's free-model router) |
 | `GEMINI_API_KEY` | https://aistudio.google.com/apikey (free tier; automatic fallback LLM) |
+| `SPOTIFY_OWNER_EMAIL` | Public contact email used once by Spotify to verify ownership of the RSS feed |
+| `YOUTUBE_WEBSHARE_PROXY_USERNAME` | Optional: Webshare residential proxy username, recommended because GitHub Actions IPs are commonly blocked by YouTube |
+| `YOUTUBE_WEBSHARE_PROXY_PASSWORD` | Optional: matching Webshare residential proxy password |
 
-At least one of the two LLM keys is required; set both so the pipeline survives
-owl-alpha's eventual retirement.
+At least one of the two LLM keys is required; set both so the pipeline can fall
+back to Gemini when OpenRouter's free models are unavailable or rate-limited.
+
+YouTube transcripts are fetched with
+[`youtube-transcript-api`](https://github.com/jdepoix/youtube-transcript-api).
+Direct requests usually work locally, but YouTube commonly blocks GitHub
+Actions and other cloud-provider IPs. For reliable automated transcripts, add
+the two optional Webshare **Residential** proxy secrets above. You can also set
+the repository variable `YOUTUBE_PROXY_LOCATIONS` to a comma-separated list
+such as `au,us`. Other proxy providers can be used locally with
+`YOUTUBE_HTTP_PROXY` and `YOUTUBE_HTTPS_PROXY` environment variables.
 
 ### 2b. NotebookLM audio (optional but recommended — two-host AI podcast)
 
@@ -75,6 +87,20 @@ After the first successful run, your feed lives at:
 Add that URL in AntennaPod / Pocket Casts / Apple Podcasts ("add by URL").
 Enable auto-download so the episode is on your phone before you leave.
 
+### Spotify
+
+The generated feed includes Spotify-compatible artwork and podcast metadata.
+Set the `SPOTIFY_OWNER_EMAIL` repository secret, run the workflow once, then
+submit the feed URL to Spotify for Creators as an externally hosted show:
+
+```
+<base_url>/feed-<feed_slug>.xml
+```
+
+Spotify will verify ownership using the email in the feed and automatically
+import future episodes. The show and feed become publicly discoverable after
+submission.
+
 ## Running
 
 - Automatic: daily at 23:15 UTC (04:45 Asia/Colombo). Edit the cron in
@@ -84,10 +110,10 @@ Enable auto-download so the episode is on your phone before you leave.
   `python -m src.pipeline` (use `--skip tts` to test cheaply).
 
 ## Notes & known issues
-- **owl-alpha is a stealth preview model:** free in exchange for usage data
-  (prompts/completions may be logged for training), slow (~12 tok/s — fine for
-  a cron job), and it will disappear without notice when the preview ends. The
-  pipeline then falls back to Gemini Flash automatically; to switch primary
+- **OpenRouter free-model availability varies:** `openrouter/free` automatically
+  routes each request to an available free model, so response quality, speed,
+  limits, and data policies can vary. The pipeline falls back to Gemini Flash
+  automatically if OpenRouter fails; to switch primary
   models permanently, edit `llm.providers` in `config/settings.yaml`.
 - **Gemini API free tier** (separate from the Google AI Pro consumer
   subscription, which does not include API credits) covers Flash models with a
