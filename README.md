@@ -7,11 +7,10 @@ Google News, summarizes new videos from your favorite YouTube channels, writes a
 Edge TTS), and publishes it to a private RSS feed your podcast app downloads
 automatically.
 
-Releases: https://github.com/ROMANFern/driver-podcast/releases
-
 ```
-GitHub Actions (daily, ~04:45 Asia/Colombo)
+GitHub Actions (daily, ~04:45 Australia/Sydney)
   1. collect_youtube  - channel RSS feeds -> new videos (24h) -> transcripts
+                        (disabled by default; youtube.enabled in settings.yaml)
   2. research         - Google News RSS per topic + free LLM -> summaries
   3. audio            - NotebookLM Audio Overview (two-host AI podcast), with
                         automatic fallback to free-LLM script + Edge TTS
@@ -103,8 +102,9 @@ submission.
 
 ## Running
 
-- Automatic: daily at 23:15 UTC (04:45 Asia/Colombo). Edit the cron in
-  `.github/workflows/daily.yml` to change.
+- Automatic: daily at 17:45 UTC (04:45 AEDT / 03:45 AEST, Sydney). Edit the cron
+  in `.github/workflows/daily.yml` to change. Note: GitHub cron is fixed UTC and
+  does not follow daylight saving.
 - Manual: **Actions → Daily episode → Run workflow**.
 - Local test: `pip install -r requirements.txt`, set the env vars, then
   `python -m src.pipeline` (use `--skip tts` to test cheaply).

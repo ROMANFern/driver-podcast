@@ -16,7 +16,7 @@ podcast:
   base_url: "https://romanfern.github.io/driver-podcast"
 
 episode:
-  target_words: 2600        # ~15-20 minutes of speech
+  target_words: 4200        # ~25-30 minutes of speech (fallback Edge TTS path)
   keep_last: 14             # episodes retained in the feed
 
 # LLM providers, tried in order. A provider is skipped if its API key env var
@@ -54,8 +54,9 @@ notebooklm:
   instructions: >
     This is a daily morning-drive briefing made for one listener, Manusha.
     Address him directly now and then. Cover the AI news, then anime news,
-    then the new videos from his YouTube creators (name each channel).
-    Keep it energetic and conversational, around fifteen to twenty minutes.
+    then science & space, then tech & gadgets.
+    Keep it energetic and conversational, and go in depth — a longer, thorough
+    briefing that really digs into each story is better than a rushed one.
 
 # Edge TTS fallback voice. List voices: python -m edge_tts --list-voices
 tts:
@@ -63,6 +64,9 @@ tts:
   rate: "+0%"
 
 youtube:
+  # Set to true to bring back the YouTube creator-updates section. When false,
+  # the pipeline skips collection entirely and the episode covers topics only.
+  enabled: false
   lookback_hours: 26        # slight overlap so nothing is missed between runs
   max_videos_per_day: 6
   max_transcript_chars: 12000

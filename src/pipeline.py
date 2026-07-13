@@ -13,7 +13,7 @@ import json
 import sys
 from datetime import datetime, timezone
 
-from .common import ensure_output_dir, get_logger
+from .common import ensure_output_dir, get_logger, load_settings
 
 log = get_logger("pipeline")
 
@@ -34,9 +34,10 @@ def main() -> int:
     skip = {s.strip() for s in args.skip.split(",") if s.strip()}
     out_dir = ensure_output_dir()
 
-    # --- 1. YouTube (optional) ---
+    # --- 1. YouTube (optional; disabled via youtube.enabled: false in settings) ---
     videos: list[dict] = []
-    if "youtube" not in skip:
+    youtube_enabled = load_settings()["youtube"].get("enabled", True)
+    if youtube_enabled and "youtube" not in skip:
         try:
             from .collect_youtube import collect
             videos = collect()
@@ -62,7 +63,6 @@ def main() -> int:
         log.info("Audio generation skipped — stopping before audio/publish")
         return 0
 
-    from .common import load_settings
     engine = load_settings()["audio"]["engine"]
     episode_filename = _episode_filename()
     mp3_path = None

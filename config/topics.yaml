@@ -15,3 +15,15 @@ topics:
       New season announcements, trailers, episode highlights of currently airing
       popular shows, manga adaptation news, and studio news. Prefer concrete
       announcements over rumors.
+  - name: "Science & Space"
+    queries: ["space mission", "astronomy discovery", "science breakthrough"]
+    guidance: >
+      Space missions and launches, astronomy and astrophysics discoveries, and
+      major research breakthroughs across the sciences. Prefer concrete findings
+      and milestones over speculative or preliminary results.
+  - name: "Tech & Gadgets"
+    queries: ["consumer tech", "gadget launch", "hardware announcement"]
+    guidance: >
+      Consumer hardware launches, notable devices, developer tools, and
+      significant platform or software releases. Skip rumors, leaks, and minor
+      spec bumps unless genuinely noteworthy.
